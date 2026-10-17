@@ -24,10 +24,17 @@
   const refHost = (() => { try { return new URL(document.referrer).hostname; } catch (e) { return ''; } })();
   const internal = refHost && refHost === location.hostname;
 
-  const post = body =>
-    fetch(API, { method: 'POST', body: JSON.stringify(Object.assign({ tz, lang, device, page }, body)), keepalive: true })
+  // Plain POST (text/plain, no preflight). If it fails, e.g. on a browser that trips over the
+  // Apps Script redirect, fall back to a one-way beacon so the visit is still counted.
+  const post = body => {
+    const payload = JSON.stringify(Object.assign({ tz, lang, device, page }, body));
+    return fetch(API, { method: 'POST', body: payload })
       .then(r => r.json())
-      .catch(() => null);
+      .catch(() => {
+        try { if (navigator.sendBeacon) navigator.sendBeacon(API, payload); } catch (e) {}
+        return null;
+      });
+  };
 
   if (!optOut) {
     window.mcTrack = (t, d) => { post({ t, d }); };
