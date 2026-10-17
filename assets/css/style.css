@@ -491,8 +491,11 @@ em { font-style: italic; }
 .filmstrip {
   position: relative; z-index: 1;
   overflow: hidden;
-  background: #070706;
-  border-block: 1px solid var(--line);
+  /* developed film base: brown-black, slightly denser at the edges */
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0) 78%, rgba(0, 0, 0, 0.35)),
+    linear-gradient(90deg, #22170f, #2b1d13 35%, #251910 65%, #2c1e14);
+  border-block: 1px solid rgba(120, 84, 52, 0.25);
 }
 .filmstrip__track {
   position: relative;
@@ -503,7 +506,7 @@ em { font-style: italic; }
 }
 .filmstrip__track::before, .filmstrip__track::after {
   content: ""; position: absolute; left: 0; right: 0; height: 10px;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='10'><rect x='6' y='0' width='10' height='10' rx='2' fill='%23e8e1d3' fill-opacity='.78'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='10'><rect x='6' y='0' width='10' height='10' rx='2' fill='%23e9dcc6' fill-opacity='.82'/></svg>");
   background-repeat: repeat-x; background-size: 22px 10px;
 }
 .filmstrip__track::before { top: 12px; }
@@ -516,7 +519,7 @@ em { font-style: italic; }
   position: absolute; left: 2px; right: 2px; top: calc(100% + 5px);
   display: flex; justify-content: space-between;
   font-family: var(--mono); font-size: 9px; line-height: 1; letter-spacing: 0.12em;
-  color: var(--shu);
+  color: #e09a4f;
 }
 
 /* ---------- About ---------- */

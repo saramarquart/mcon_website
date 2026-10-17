@@ -13,11 +13,11 @@
   const src = (name, w) => `${IMG}${name}-${w}.jpg`;
   const srcset = name => `${src(name, 600)} 600w, ${src(name, 1200)} 1200w, ${src(name, 2400)} 2400w`;
 
-  /* ---------- Stories (texts by Margarette Contreras) ---------- */
+  /* ---------- Stories ---------- */
   const STORIES = {
     light: {
       title: 'Light', series: 'Norway',
-      text: 'One of the most magical aspects of film photography is the way it lets us explore the interplay between light and nature. Each photograph becomes a tribute to how these two elements interact, creating a world of texture, shadow and colour that is uniquely its own.',
+      text: 'Light on mountains, ridges and the sea.',
       frames: [
         ['light-01', 'Two figures on a ridge, silhouetted against a pale sky'],
         ['norway-cover', 'Dark headland catching the last light over a calm sea'],
@@ -27,7 +27,7 @@
     },
     inhabits: {
       title: 'Inhabits', series: 'Norway',
-      text: '“Inhabits” explores the lives of people in different environments, from the warmth of their homes to the vastness of the sea, all captured in natural light. Through contrasts and composition, it offers a glimpse into the human experiences that inhabit these spaces.',
+      text: 'People and the places they live: harbours, houses, a ferry.',
       frames: [
         ['inhabits-01', 'Golden light on a jagged mountain above a still bay'],
         ['inhabits-03', 'Red fishermen’s cabins on rocks below towering mountains'],
@@ -38,7 +38,7 @@
     },
     water: {
       title: 'Water', series: 'Norway',
-      text: 'The interplay between water and light — its fluidity, its reflections, and the way light dances upon its surface.',
+      text: 'Fog, rainbows and still water along the coast.',
       frames: [
         ['water-01', 'Mist rolling over a coastal road and dark water'],
         ['water-03', 'Red cabins on the shore beneath a sunlit, jagged peak'],
@@ -48,8 +48,8 @@
       ],
     },
     takipsilim: {
-      title: 'Takipsilim', series: 'The Last Frontier — Palawan',
-      text: 'Takipsilim — the most awaited period of the day, when the sky dances in a stunning array of colours as the sun goes down.',
+      title: 'Takipsilim', series: 'Palawan',
+      text: 'Takipsilim is Tagalog for dusk. Sunsets over Palawan.',
       frames: [
         ['takipsilim-01', 'Sun setting over the water, two swimmers in the glittering light'],
         ['takipsilim-02', 'A small island and outrigger boats on calm blue water at dusk'],
@@ -60,8 +60,8 @@
       ],
     },
     amos: {
-      title: 'Amos', series: 'The Last Frontier — Palawan',
-      text: 'Amos is a Cuyunon word for “let’s go”. This album pays homage to growing up in a large family and spending countless weekends at the beach — coconuts, white sand, and a journey down memory lane at the mere mention of the magic word.',
+      title: 'Amos', series: 'Palawan',
+      text: 'Amos is Cuyunon for “let’s go”. Weekends at the beach, growing up in a big family.',
       frames: [
         ['amos-01', 'A leaning palm over a white-sand beach and turquoise water'],
         ['amos-02', 'A small green island beyond a breaking wave'],
@@ -72,8 +72,8 @@
       ],
     },
     isla: {
-      title: 'Buhay Isla', series: 'The Last Frontier — Palawan',
-      text: 'The joy of island living, surrounded by the natural beauty of the ocean and the close-knit community that calls it home.',
+      title: 'Buhay Isla', series: 'Palawan',
+      text: 'Buhay isla means island life. Fishermen, boats and the beach.',
       frames: [
         ['isla-01', 'An outrigger boat resting in shallow water at low tide'],
         ['isla-02', 'Outrigger boats on a beach below a jungle-covered hillside'],
@@ -83,8 +83,8 @@
       ],
     },
     publications: {
-      title: 'Cosmos Coffee', series: 'Publications & exhibitions',
-      text: 'Photographs for the book and touring exhibition “Cosmos Coffee” — Deutsches Museum, Munich, and the Starbucks Reserve Roastery, Milan.',
+      title: 'Cosmos Coffee', series: 'Publications',
+      text: 'Photographs for the book and exhibition “Cosmos Coffee”.',
       frames: [
         ['pub-01', 'An open book spread illustrated with a coffee photograph'],
         ['pub-02', 'Cover of the book Cosmos Coffee'],
