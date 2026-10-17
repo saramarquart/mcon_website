@@ -17,7 +17,7 @@
   const STORIES = {
     light: {
       title: 'Light', series: 'Norway',
-      text: 'Light on mountains, ridges and the sea.',
+      text: 'What I love most about film is how it handles light. These frames are about light meeting the landscape: the last sun on a ridge, rays falling into a fjord, and the texture and shadow in between.',
       frames: [
         ['light-01', 'Two figures on a ridge, silhouetted against a pale sky'],
         ['norway-cover', 'Dark headland catching the last light over a calm sea'],
@@ -27,7 +27,7 @@
     },
     inhabits: {
       title: 'Inhabits', series: 'Norway',
-      text: 'People and the places they live: harbours, houses, a ferry.',
+      text: 'Inhabits is about people and the places they live in, from the warmth of a house to the open sea. Harbours, red cabins and a ferry ride, all in natural light.',
       frames: [
         ['inhabits-01', 'Golden light on a jagged mountain above a still bay'],
         ['inhabits-03', 'Red fishermen’s cabins on rocks below towering mountains'],
@@ -38,7 +38,7 @@
     },
     water: {
       title: 'Water', series: 'Norway',
-      text: 'Fog, rainbows and still water along the coast.',
+      text: 'Water does something different with light every time. Fog rolling in over the coast, a rainbow over the fjord, snow on the mountains above a still bay.',
       frames: [
         ['water-01', 'Mist rolling over a coastal road and dark water'],
         ['water-03', 'Red cabins on the shore beneath a sunlit, jagged peak'],
@@ -49,7 +49,7 @@
     },
     takipsilim: {
       title: 'Takipsilim', series: 'Palawan',
-      text: 'Takipsilim is Tagalog for dusk. Sunsets over Palawan.',
+      text: 'Takipsilim is Tagalog for dusk, the time of day everyone waits for. The sun goes down and the sky over Palawan turns gold, pink and violet.',
       frames: [
         ['takipsilim-01', 'Sun setting over the water, two swimmers in the glittering light'],
         ['takipsilim-02', 'A small island and outrigger boats on calm blue water at dusk'],
@@ -61,7 +61,7 @@
     },
     amos: {
       title: 'Amos', series: 'Palawan',
-      text: 'Amos is Cuyunon for “let’s go”. Weekends at the beach, growing up in a big family.',
+      text: 'Amos is a Cuyunon word for “let’s go”. Growing up in a big family, it meant we were heading to the beach for the weekend. Coconuts, white sand, and that one word still brings it all back.',
       frames: [
         ['amos-01', 'A leaning palm over a white-sand beach and turquoise water'],
         ['amos-02', 'A small green island beyond a breaking wave'],
@@ -73,7 +73,7 @@
     },
     isla: {
       title: 'Buhay Isla', series: 'Palawan',
-      text: 'Buhay isla means island life. Fishermen, boats and the beach.',
+      text: 'Buhay isla means island life. Fishermen bringing in the catch, boats pulled up on the sand, and a community where everyone knows each other.',
       frames: [
         ['isla-01', 'An outrigger boat resting in shallow water at low tide'],
         ['isla-02', 'Outrigger boats on a beach below a jungle-covered hillside'],
@@ -83,8 +83,8 @@
       ],
     },
     publications: {
-      title: 'Cosmos Coffee', series: 'Publications',
-      text: 'Photographs for the book and exhibition “Cosmos Coffee”.',
+      title: 'Cosmos Coffee', series: 'Publications & exhibitions',
+      text: 'Photographs for the book and the touring exhibition “Cosmos Coffee” at the Deutsches Museum in Munich, including two taken at the Starbucks Reserve Roastery in Milan.',
       frames: [
         ['pub-01', 'An open book spread illustrated with a coffee photograph'],
         ['pub-02', 'Cover of the book Cosmos Coffee'],
