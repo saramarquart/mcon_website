@@ -73,7 +73,7 @@
     },
     isla: {
       title: 'Buhay Isla', series: 'Palawan',
-      text: 'Buhay isla means island life. Fishermen bringing in the catch, boats pulled up on the sand, and a community where everyone knows each other.',
+      text: 'Buhay isla means island life. Fishermen bringing in the catch, boats pulled up on the sand, and the close-knit community that calls the island home.',
       frames: [
         ['isla-01', 'An outrigger boat resting in shallow water at low tide'],
         ['isla-02', 'Outrigger boats on a beach below a jungle-covered hillside'],
