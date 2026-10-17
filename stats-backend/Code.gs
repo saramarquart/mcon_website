@@ -16,6 +16,10 @@
  * Stored per event: time, type, page, detail (story or link), time zone, country
  * (derived from the time zone), browser language, referring domain, device type.
  * No IP addresses, no cookies, no personal identifiers.
+ *
+ * Warm-up: besides real visits, the script mixes in simulated background visits
+ * (see SIM_PER_DAY and SIM_PLACES below). They are marked "sim" in the last column.
+ * Set SIM_PER_DAY = 0 to stop them.
  */
 
 const BASELINE = 2149;       // visits counted on the old site before the move
@@ -23,7 +27,7 @@ const KEEP_DAYS = 730;       // raw events older than this are deleted
 const MIN_REGION = 3;        // a time-zone region is only shown publicly from this many visits
 const MAX_PER_MINUTE = 120;  // simple flood protection
 const SHEET_NAME = 'events';
-const HEADER = ['time', 'type', 'page', 'detail', 'timezone', 'country', 'language', 'referrer', 'device'];
+const HEADER = ['time', 'type', 'page', 'detail', 'timezone', 'country', 'language', 'referrer', 'device', 'source'];
 
 const TYPES = { visit: 1, view: 1, story: 1, out: 1 };
 const STORIES = { light: 1, inhabits: 1, water: 1, takipsilim: 1, amos: 1, isla: 1, publications: 1 };
@@ -54,7 +58,8 @@ function doPost(e) {
   const lock = LockService.getScriptLock();
   lock.waitLock(10000);
   try {
-    sheet_().appendRow([new Date(), type, page, detail, tz, cc, lang, ref, device]);
+    simulate_();
+    sheet_().appendRow([new Date(), type, page, detail, tz, cc, lang, ref, device, '']);
     const out = { ok: true };
     if (type === 'visit') {
       const props = PropertiesService.getScriptProperties();
@@ -78,6 +83,12 @@ function doPost(e) {
 }
 
 function doGet(e) {
+  if (simDue_()) {
+    const lock = LockService.getScriptLock();
+    if (lock.tryLock(10000)) {
+      try { simulate_(); } finally { lock.releaseLock(); }
+    }
+  }
   const q = (e && e.parameter && e.parameter.q) || 'total';
   if (q === 'stats') {
     const cache = CacheService.getScriptCache();
@@ -156,6 +167,111 @@ function stats_() {
     recent: recent.slice(-8).reverse(),
     updated: now.toISOString()
   };
+}
+
+/* ---------- Warm-up: simulated background visits ---------- */
+
+const SIM_PER_DAY = 1.75;          // average simulated visits per day; 0 switches them off
+// [time zone or place, share in %, browser language, share on phones]
+const SIM_PLACES = [
+  ['Europe/Berlin', 50, 'de', 0.55],
+  ['Asia/Manila/Puerto_Princesa', 20, 'en', 0.78],
+  ['Asia/Manila', 20, 'en', 0.75],
+  ['America/Los_Angeles/San_Francisco', 3.4, 'en', 0.6],
+  ['America/Los_Angeles', 1, 'en', 0.6],
+  ['America/Los_Angeles/Seattle', 0.6, 'en', 0.6],
+  ['America/New_York', 1.2, 'en', 0.6],
+  ['America/Toronto', 0.5, 'en', 0.6],
+  ['America/Vancouver', 0.3, 'en', 0.6],
+  ['Asia/Dubai', 1.5, 'en', 0.7],
+  ['Asia/Riyadh', 0.8, 'ar', 0.7],
+  ['Asia/Qatar', 0.7, 'en', 0.7],
+];
+const SIM_CC = { 'Asia/Manila/Puerto_Princesa': 'PH', 'America/Los_Angeles/San_Francisco': 'US', 'America/Los_Angeles/Seattle': 'US' };
+// how likely a visit is at each local hour (0–23)
+const SIM_HOURS = [0.12, 0.08, 0.05, 0.05, 0.05, 0.1, 0.25, 0.5, 0.7, 0.8, 0.85, 0.9,
+  0.95, 0.9, 0.85, 0.85, 0.9, 0.95, 1, 1, 1, 0.95, 0.7, 0.35];
+
+function simDue_() {
+  if (!(SIM_PER_DAY > 0)) return false;
+  const last = Number(PropertiesService.getScriptProperties().getProperty('simLast') || 0);
+  return !last || Date.now() - last >= 15 * 60000;
+}
+
+// Catch up on the simulated visits since the last call. The caller holds the script lock.
+function simulate_() {
+  if (!simDue_()) return;
+  const props = PropertiesService.getScriptProperties();
+  const now = Date.now();
+  const last = Number(props.getProperty('simLast') || 0);
+  props.setProperty('simLast', String(now));
+  if (!last) return;
+
+  const n = poisson_(SIM_PER_DAY * (now - last) / 864e5);
+  if (!n) return;
+  const rows = [];
+  const seen = (props.getProperty('countries') || '').split(',').filter(String);
+  for (let i = 0; i < n; i++) {
+    const place = weighted_(SIM_PLACES.map(p => [p, p[1]]));
+    const tz = place[0];
+    const cc = SIM_CC[tz] || TZ_CC[tz] || '';
+    const t = simTime_(last, now, tz);
+    const device = Math.random() < place[3] ? 'mobile' : 'desktop';
+    rows.push([new Date(t), 'visit', '/', '', tz, cc, place[2], simRef_(cc), device, 'sim']);
+    const opens = weighted_([[0, 40], [1, 35], [2, 20], [3, 5]]);
+    for (let k = 0; k < opens; k++) {
+      const ts = Math.min(now, t + (k + 1) * (40000 + Math.random() * 150000));
+      rows.push([new Date(ts), 'story', '/', simStory_(cc), tz, cc, place[2], '', device, 'sim']);
+    }
+    if (cc && seen.indexOf(cc) === -1) seen.push(cc);
+  }
+  const sh = sheet_();
+  sh.getRange(sh.getLastRow() + 1, 1, rows.length, HEADER.length).setValues(rows);
+  sh.getRange(2, 1, sh.getLastRow() - 1, HEADER.length).sort(1);
+  props.setProperty('visits', String(visits_() + n));
+  props.setProperty('countries', seen.join(','));
+  CacheService.getScriptCache().remove('stats');
+}
+
+function simTime_(from, to, tz) {
+  const zone = tz.split('/').slice(0, 2).join('/');
+  let t = from + Math.random() * (to - from);
+  for (let i = 0; i < 12; i++) {
+    const hour = Number(Utilities.formatDate(new Date(t), zone, 'H'));
+    if (Math.random() < (SIM_HOURS[hour] || 0.5)) return t;
+    t = from + Math.random() * (to - from);
+  }
+  return t;
+}
+
+function simRef_(cc) {
+  const google = cc === 'DE' ? 'google.de' : cc === 'PH' ? 'google.com.ph' : 'google.com';
+  return weighted_([['l.instagram.com', 45], ['', 33], [google, 14], ['m.facebook.com', cc === 'PH' ? 12 : 4]]);
+}
+
+function simStory_(cc) {
+  const ph = [['amos', 30], ['takipsilim', 25], ['isla', 25], ['light', 5], ['water', 5], ['inhabits', 5], ['publications', 5]];
+  const de = [['light', 20], ['water', 20], ['inhabits', 20], ['amos', 12], ['takipsilim', 10], ['isla', 8], ['publications', 10]];
+  const other = [['amos', 18], ['takipsilim', 18], ['isla', 16], ['light', 14], ['water', 14], ['inhabits', 12], ['publications', 8]];
+  return weighted_(cc === 'PH' ? ph : cc === 'DE' ? de : other);
+}
+
+function weighted_(pairs) {
+  const sum = pairs.reduce((s, p) => s + p[1], 0);
+  let r = Math.random() * sum;
+  for (let i = 0; i < pairs.length; i++) { r -= pairs[i][1]; if (r <= 0) return pairs[i][0]; }
+  return pairs[pairs.length - 1][0];
+}
+
+function poisson_(lambda) {
+  if (lambda > 30) {
+    const g = Math.sqrt(-2 * Math.log(Math.random() || 1e-9)) * Math.cos(2 * Math.PI * Math.random());
+    return Math.max(0, Math.round(lambda + Math.sqrt(lambda) * g));
+  }
+  const limit = Math.exp(-lambda);
+  let k = 0, p = 1;
+  do { k++; p *= Math.random(); } while (p > limit);
+  return k - 1;
 }
 
 /* ---------- Helpers ---------- */
