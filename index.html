@@ -11,7 +11,11 @@
   <meta property="og:description" content="Nature in all its contrasts and imperfections, captured through the grain and play of light that only film can offer.">
   <meta property="og:image" content="assets/img/hero-1200.jpg">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="format-detection" content="telephone=no">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icons/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
   <link rel="preload" href="assets/fonts/bodoni-moda-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/bodoni-moda-latin-opsz-italic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/geist-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -70,7 +74,7 @@
                srcset="assets/img/hero-wide-1200.jpg 1200w, assets/img/hero-wide-2400.jpg 2400w"
                sizes="100vw" width="2400" height="1350" fetchpriority="high" decoding="async"
                alt="White wooden houses and fishing boats along a harbour in Norway">
-          <video class="living" data-video="assets/video/hero" muted loop playsinline preload="none" aria-hidden="true"></video>
+          <video class="living" data-video="assets/video/hero" muted loop playsinline disablepictureinpicture disableremoteplayback preload="none" aria-hidden="true"></video>
         </div>
         <div class="pin__dim"></div>
         <div class="hero__content pin__content">
@@ -111,7 +115,7 @@
             <button class="frame__btn" type="button" data-open="water" data-at="1" data-cursor="View">
               <span class="frame__img" style="--ar:16/9">
                 <img src="assets/img/water-03-wide-1200.jpg" srcset="assets/img/water-03-wide-1200.jpg 1200w, assets/img/water-03-wide-2400.jpg 2400w" sizes="(max-width: 760px) 100vw, 66vw" width="1200" height="675" loading="lazy" decoding="async" alt="Red cabins on the shore beneath a sunlit, jagged peak">
-                <video class="living" data-video="assets/video/water-03" muted loop playsinline preload="none" aria-hidden="true"></video>
+                <video class="living" data-video="assets/video/water-03" muted loop playsinline disablepictureinpicture disableremoteplayback preload="none" aria-hidden="true"></video>
               </span>
             </button>
             <figcaption class="mono"><span>N° 11</span><span>Water</span><span>Norway</span></figcaption>
@@ -129,7 +133,7 @@
             <button class="frame__btn" type="button" data-open="light" data-at="2" data-cursor="View">
               <span class="frame__img" style="--ar:16/9">
                 <img src="assets/img/light-04-wide-1200.jpg" srcset="assets/img/light-04-wide-1200.jpg 1200w, assets/img/light-04-wide-2400.jpg 2400w" sizes="(max-width: 760px) 100vw, 84vw" width="1200" height="675" loading="lazy" decoding="async" alt="Rays of light falling into a steep green fjord">
-                <video class="living" data-video="assets/video/light-04" muted loop playsinline preload="none" aria-hidden="true"></video>
+                <video class="living" data-video="assets/video/light-04" muted loop playsinline disablepictureinpicture disableremoteplayback preload="none" aria-hidden="true"></video>
               </span>
             </button>
             <figcaption class="mono"><span>N° 03</span><span>Light</span><span>Norway</span></figcaption>
@@ -157,7 +161,7 @@
           <div class="bleed pin">
             <div class="pin__inner">
               <img src="assets/img/takipsilim-01-wide-1200.jpg" srcset="assets/img/takipsilim-01-wide-1200.jpg 1200w, assets/img/takipsilim-01-wide-2400.jpg 2400w" sizes="100vw" width="1200" height="675" loading="lazy" decoding="async" alt="Sun setting over the water, swimmers in the glittering light">
-              <video class="living" data-video="assets/video/takipsilim-01" muted loop playsinline preload="none" aria-hidden="true"></video>
+              <video class="living" data-video="assets/video/takipsilim-01" muted loop playsinline disablepictureinpicture disableremoteplayback preload="none" aria-hidden="true"></video>
             </div>
             <div class="pin__dim"></div>
             <header class="bleed__head grid pin__content">
@@ -172,7 +176,7 @@
               <button class="frame__btn" type="button" data-open="amos" data-at="2" data-cursor="View">
                 <span class="frame__img" style="--ar:2/3">
                   <img src="assets/img/amos-03-tall-1200.jpg" srcset="assets/img/amos-03-tall-1200.jpg 675w, assets/img/amos-03-tall-2400.jpg 1350w" sizes="(max-width: 760px) 66vw, 33vw" width="675" height="1200" loading="lazy" decoding="async" alt="Palm trees against a bright sky">
-                  <video class="living" data-video="assets/video/amos-03" data-sizes="720" muted loop playsinline preload="none" aria-hidden="true"></video>
+                  <video class="living" data-video="assets/video/amos-03" data-sizes="720" muted loop playsinline disablepictureinpicture disableremoteplayback preload="none" aria-hidden="true"></video>
                 </span>
               </button>
               <figcaption class="mono"><span>N° 23</span><span>Amos</span></figcaption>
@@ -216,7 +220,7 @@
       <section class="interlude pin" aria-labelledby="film-title">
         <div class="pin__inner">
           <img src="assets/img/water-01-wide-1200.jpg" srcset="assets/img/water-01-wide-1200.jpg 1200w, assets/img/water-01-wide-2400.jpg 2400w" sizes="100vw" width="1200" height="675" loading="lazy" decoding="async" alt="Mist rolling over a coastal road and dark water">
-          <video class="living" data-video="assets/video/water-01" muted loop playsinline preload="none" aria-hidden="true"></video>
+          <video class="living" data-video="assets/video/water-01" muted loop playsinline disablepictureinpicture disableremoteplayback preload="none" aria-hidden="true"></video>
         </div>
         <div class="pin__dim"></div>
         <div class="interlude__content pin__content">
@@ -241,12 +245,12 @@
           <p class="mono label index__meta">06 stories — 31 frames<br>Select a story to view</p>
         </header>
         <ol class="index__list">
-          <li><button class="index__row" type="button" data-open="light"><span class="mono">01</span><span class="index__title">Light</span><span class="index__dek">The interplay between light and nature — texture, shadow and colour.</span><span class="mono index__series">Norway</span><span class="mono index__count">04 fr.</span></button></li>
-          <li><button class="index__row" type="button" data-open="inhabits"><span class="mono">02</span><span class="index__title">Inhabits</span><span class="index__dek">Human lives, from the warmth of home to the vastness of the sea.</span><span class="mono index__series">Norway</span><span class="mono index__count">05 fr.</span></button></li>
-          <li><button class="index__row" type="button" data-open="water"><span class="mono">03</span><span class="index__title">Water</span><span class="index__dek">Fluid, reflective — and the way light dances on its surface.</span><span class="mono index__series">Norway</span><span class="mono index__count">05 fr.</span></button></li>
-          <li><button class="index__row" type="button" data-open="takipsilim"><span class="mono">04</span><span class="index__title">Takipsilim</span><span class="index__dek">Tagalog for dusk — the most awaited hour, when the sky dances in colour.</span><span class="mono index__series">Palawan</span><span class="mono index__count">06 fr.</span></button></li>
-          <li><button class="index__row" type="button" data-open="amos"><span class="mono">05</span><span class="index__title">Amos</span><span class="index__dek">Cuyunon for “let’s go” — weekends at the beach, a large family, white sand.</span><span class="mono index__series">Palawan</span><span class="mono index__count">06 fr.</span></button></li>
-          <li><button class="index__row" type="button" data-open="isla"><span class="mono">06</span><span class="index__title">Buhay Isla</span><span class="index__dek">Island life — the ocean and the close-knit community it holds.</span><span class="mono index__series">Palawan</span><span class="mono index__count">05 fr.</span></button></li>
+          <li><button class="index__row" type="button" data-open="light"><span class="mono">01</span><span class="index__title">Light</span><span class="index__dek">The interplay between light and nature — texture, shadow and colour.</span><span class="mono index__series">Norway</span><span class="mono index__count">04 fr.</span><img class="index__thumb" src="assets/img/light-01-600.jpg" alt="" loading="lazy" decoding="async"></button></li>
+          <li><button class="index__row" type="button" data-open="inhabits"><span class="mono">02</span><span class="index__title">Inhabits</span><span class="index__dek">Human lives, from the warmth of home to the vastness of the sea.</span><span class="mono index__series">Norway</span><span class="mono index__count">05 fr.</span><img class="index__thumb" src="assets/img/inhabits-01-600.jpg" alt="" loading="lazy" decoding="async"></button></li>
+          <li><button class="index__row" type="button" data-open="water"><span class="mono">03</span><span class="index__title">Water</span><span class="index__dek">Fluid, reflective — and the way light dances on its surface.</span><span class="mono index__series">Norway</span><span class="mono index__count">05 fr.</span><img class="index__thumb" src="assets/img/water-03-600.jpg" alt="" loading="lazy" decoding="async"></button></li>
+          <li><button class="index__row" type="button" data-open="takipsilim"><span class="mono">04</span><span class="index__title">Takipsilim</span><span class="index__dek">Tagalog for dusk — the most awaited hour, when the sky dances in colour.</span><span class="mono index__series">Palawan</span><span class="mono index__count">06 fr.</span><img class="index__thumb" src="assets/img/takipsilim-06-600.jpg" alt="" loading="lazy" decoding="async"></button></li>
+          <li><button class="index__row" type="button" data-open="amos"><span class="mono">05</span><span class="index__title">Amos</span><span class="index__dek">Cuyunon for “let’s go” — weekends at the beach, a large family, white sand.</span><span class="mono index__series">Palawan</span><span class="mono index__count">06 fr.</span><img class="index__thumb" src="assets/img/amos-01-600.jpg" alt="" loading="lazy" decoding="async"></button></li>
+          <li><button class="index__row" type="button" data-open="isla"><span class="mono">06</span><span class="index__title">Buhay Isla</span><span class="index__dek">Island life — the ocean and the close-knit community it holds.</span><span class="mono index__series">Palawan</span><span class="mono index__count">05 fr.</span><img class="index__thumb" src="assets/img/isla-03-600.jpg" alt="" loading="lazy" decoding="async"></button></li>
         </ol>
         <div class="index__preview" aria-hidden="true">
           <img src="assets/img/light-01-600.jpg" alt="" data-key="light" loading="lazy">
@@ -338,8 +342,8 @@
   <footer class="site-footer">
     <div class="site-footer__row mono">
       <span>© <span data-year>2026</span> Margarette Contreras</span>
-      <span>Analog film photography</span>
-      <a href="imprint.html">Imprint &amp; Disclaimer</a>
+      <a href="imprint.html">Imprint</a>
+      <a href="privacy.html">Privacy</a>
       <a href="#top" class="to-top">Back to top ↑</a>
     </div>
     <p class="site-footer__mark" aria-hidden="true"><em>Contreras</em></p>
@@ -360,6 +364,10 @@
     <div class="lb__bottom">
       <p class="lb__text"></p>
       <div class="lb__thumbs"></div>
+      <div class="lb__arrows mono">
+        <button type="button" class="lb__prev">← Prev</button>
+        <button type="button" class="lb__next">Next →</button>
+      </div>
     </div>
   </div>
 

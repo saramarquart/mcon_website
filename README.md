@@ -19,7 +19,11 @@ python3 -m http.server 4173
 
 ```
 index.html            homepage
-imprint.html          Impressum & disclaimer
+imprint.html          Impressum / legal notice (DE + EN)
+privacy.html          Datenschutzerklärung / privacy policy (DE + EN)
+404.html              not-found page (served automatically by GitHub Pages)
+site.webmanifest      home-screen icon + colours for Android / iOS
+robots.txt
 assets/css/style.css  all styles (tokens at the top)
 assets/js/main.js     loader, reveals, pinned-scene depth, parallax, video loading, index preview, story viewer
 assets/fonts/         woff2 + OFL licences
@@ -28,6 +32,15 @@ assets/video/         living stills (looped, muted H.264)
 ```
 
 Story texts and frame lists live in `STORIES` at the top of `assets/js/main.js`.
+
+## Before going live
+
+- Fill in the postal address in `imprint.html` and `privacy.html` (marked in red). A street address is required for a German Impressum (§ 5 DDG).
+- If the site is hosted somewhere other than GitHub Pages, update the hosting section in `privacy.html`.
+
+## Responsive notes
+
+Tested at 360×780 (Android), 375×667 (iPhone SE), 430×932 (iPhone Pro Max), 844×390 (phone landscape), 820×1180 (iPad), 1280×720 and 1366×768 (laptops), 1440×900. Safe-area insets are respected for notches and home indicators; touch devices get story thumbnails in the index, Prev/Next buttons in the viewer and a static grain layer for smoother scrolling.
 
 ## Deploy
 

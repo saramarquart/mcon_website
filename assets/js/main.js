@@ -228,7 +228,9 @@
   }
 
   /* ---------- Living stills: load and play only while on screen ---------- */
-  const saveData = navigator.connection && navigator.connection.saveData;
+  const conn = navigator.connection || {};
+  // Skip the motion on data-saver or slow mobile connections; the photographs remain
+  const saveData = conn.saveData || /(^|-)2g|3g/.test(conn.effectiveType || '');
   const videos = $$('video.living');
   if (!reduce && !saveData && videos.length) {
     const pick = v => {
@@ -260,6 +262,7 @@
     const y = scrollY;
     const hide = y > lastY && y > innerHeight * 0.5 && !root.classList.contains('menu-open');
     header.classList.toggle('is-hidden', hide);
+    header.classList.toggle('is-scrolled', y > innerHeight * 0.85);
     lastY = y;
   }, { passive: true });
 
@@ -425,6 +428,8 @@
   lbClose.addEventListener('click', close);
   $('.lb__nav--prev', lb).addEventListener('click', () => show(at - 1));
   $('.lb__nav--next', lb).addEventListener('click', () => show(at + 1));
+  $('.lb__prev', lb).addEventListener('click', () => show(at - 1));
+  $('.lb__next', lb).addEventListener('click', () => show(at + 1));
 
   document.addEventListener('keydown', e => {
     if (!lb.classList.contains('is-open')) {
