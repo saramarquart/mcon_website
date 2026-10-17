@@ -33,6 +33,17 @@ assets/video/         living stills (looped, muted H.264)
 
 Story texts and frame lists live in `STORIES` at the top of `assets/js/main.js`.
 
+## Visitor statistics
+
+A cookieless counter built on a Google Sheet + Apps Script (no third-party analytics account).
+
+- `stats-backend/Code.gs`: the Apps Script web app. It stores anonymous events (time, page / story, time zone → country, language, referring domain, device) and serves aggregated numbers. No IP addresses, no identifiers; raw rows are deleted after two years; a time-zone region is only shown publicly from 3 visits. The count starts at `BASELINE = 2149` (visits on the old site).
+- `assets/js/count.js`: sends events, respects Do Not Track / Global Privacy Control, and shows the tiny "N° … visitors" link in the footer.
+- `stats.html` + `assets/js/stats-page.js`: the public Visitors page (frame counter, contact sheet of the current roll, dot map, rankings, last 30 days).
+- `assets/data/tz.json`, `assets/data/land.json`: generated from the IANA tz database and Natural Earth (world-atlas).
+
+**Connect it:** create a Google Sheet → Extensions → Apps Script → paste `stats-backend/Code.gs` → Deploy → New deployment → Web app, *Execute as: Me*, *Who has access: Anyone* → copy the `/exec` URL into `<meta name="mc-stats" content="…">` in `index.html`, `imprint.html`, `privacy.html` and `stats.html`. Until then everything stays switched off.
+
 ## Before going live
 
 - This is a private, non-commercial site, so the legal notice lists name, email and Instagram only (no address); both legal pages are `noindex`.

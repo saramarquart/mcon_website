@@ -19,11 +19,13 @@
   <link rel="preload" href="assets/fonts/bodoni-moda-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/bodoni-moda-latin-opsz-italic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/geist-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <meta name="mc-stats" content="">
   <link rel="stylesheet" href="assets/css/style.css">
   <script>
     document.documentElement.classList.add('js');
     try { if (sessionStorage.getItem('mc-seen')) document.documentElement.classList.add('seen'); } catch (e) {}
   </script>
+  <script src="assets/js/count.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </head>
 <body>
@@ -62,7 +64,7 @@
       <a href="#publications"><em>Publications</em></a>
       <a href="#contact">Contact</a>
     </nav>
-    <p class="mono menu__foot"><a href="https://www.instagram.com/margxcontreras/" target="_blank" rel="noopener">Instagram ↗</a><span>Film photography</span></p>
+    <p class="mono menu__foot"><a href="https://www.instagram.com/margxcontreras/" target="_blank" rel="noopener">Instagram ↗</a><span class="menu__legal"><a href="imprint.html">Imprint</a><a href="privacy.html">Privacy</a></span></p>
   </div>
 
   <main>
@@ -346,6 +348,7 @@
       <a href="privacy.html">Privacy</a>
       <a href="#top" class="to-top">Back to top ↑</a>
     </div>
+    <a class="visitors mono" href="stats.html" hidden>N° <span data-visitors></span> visitors →</a>
     <p class="site-footer__mark" aria-hidden="true"><em>Contreras</em></p>
   </footer>
 

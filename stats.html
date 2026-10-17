@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Visitors — Margarette Contreras</title>
+  <meta name="description" content="Who visits this site, and from where. Counted without cookies.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#0f0e0c">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="mc-stats" content="">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icons/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preload" href="assets/fonts/bodoni-moda-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/geist-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/count.js" defer></script>
+  <script src="assets/js/stats-page.js" defer></script>
+</head>
+<body class="page-legal page-stats">
+  <a class="skip mono" href="#content">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Margarette Contreras — home">
+      <span class="seal" aria-hidden="true">MC</span>
+      <span class="brand__name mono">Margarette Contreras</span>
+    </a>
+    <nav class="site-nav site-nav--legal" aria-label="Main">
+      <ul>
+        <li><a class="mono" href="index.html">← Home</a></li>
+        <li><a class="mono" href="stats.html" aria-current="page">Visitors</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="stats" id="content" data-state="loading">
+    <section class="stats__hero">
+      <p class="mono label">(Visitors)</p>
+      <h1 class="stats__count"><span data-count>2,149</span></h1>
+      <p class="mono stats__sub">
+        <span>Visits so far</span>
+        <span><span data-countries>0</span> countries</span>
+        <span>2,149 of them on the old site</span>
+      </p>
+      <p class="stats__you" data-you hidden></p>
+      <p class="mono stats__status" data-status>Developing…</p>
+    </section>
+
+    <section class="stats__block" aria-labelledby="roll-title">
+      <div class="stats__head">
+        <h2 class="mono" id="roll-title">The roll</h2>
+        <p class="mono label" data-roll-label></p>
+      </div>
+      <div class="contact-sheet" data-sheet></div>
+      <p class="stats__note">Every visit exposes one frame. Every 36 visits fill a roll, like a roll of 35mm film.</p>
+    </section>
+
+    <section class="stats__block" aria-labelledby="map-title">
+      <div class="stats__head">
+        <h2 class="mono" id="map-title">Where visitors came from</h2>
+        <p class="mono label">Estimated from time zones</p>
+      </div>
+      <div class="map__scroll" data-map-scroll>
+        <div class="map" data-map>
+          <canvas class="map__dots" aria-hidden="true"></canvas>
+          <div class="map__pins" data-pins></div>
+        </div>
+      </div>
+      <div class="map__panel" data-panel aria-live="polite">
+        <p class="mono label">Tap a point on the map, or a country below.</p>
+      </div>
+      <ol class="rank" data-countries-list aria-label="Visits by country"></ol>
+    </section>
+
+    <div class="stats__cols">
+      <section class="stats__block" aria-labelledby="stories-title">
+        <div class="stats__head"><h2 class="mono" id="stories-title">Most opened stories</h2></div>
+        <ol class="board" data-stories></ol>
+      </section>
+      <section class="stats__block" aria-labelledby="refs-title">
+        <div class="stats__head"><h2 class="mono" id="refs-title">How people found the site</h2></div>
+        <ol class="rank rank--plain" data-refs></ol>
+        <p class="mono label stats__devices" data-devices></p>
+      </section>
+    </div>
+
+    <section class="stats__block" aria-labelledby="days-title">
+      <div class="stats__head">
+        <h2 class="mono" id="days-title">Last 30 days</h2>
+        <p class="mono label" data-days-total></p>
+      </div>
+      <div class="days" data-days role="img"></div>
+      <details class="days__table mono">
+        <summary>Show as table</summary>
+        <table><thead><tr><th scope="col">Day</th><th scope="col">Visits</th></tr></thead><tbody data-days-table></tbody></table>
+      </details>
+    </section>
+
+    <div class="stats__cols">
+      <section class="stats__block" aria-labelledby="recent-title">
+        <div class="stats__head"><h2 class="mono" id="recent-title">Latest frames</h2></div>
+        <ol class="recent" data-recent></ol>
+      </section>
+      <section class="stats__block" aria-labelledby="goal-title">
+        <div class="stats__head"><h2 class="mono" id="goal-title">Next milestone</h2></div>
+        <p class="milestone" data-milestone></p>
+        <div class="progress" aria-hidden="true"><span data-progress></span></div>
+        <p class="mono label" data-milestone-note></p>
+      </section>
+    </div>
+
+    <p class="mono label stats__foot">Counted without cookies. No IP addresses are stored. Location is estimated from each visitor’s time zone, so it is rough. Numbers update about once a minute. <a href="privacy.html">Privacy</a></p>
+  </main>
+
+  <div class="tip mono" data-tip role="tooltip" hidden></div>
+
+  <footer class="site-footer">
+    <div class="site-footer__row mono">
+      <span>© 2026 Margarette Contreras</span>
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="#content">Back to top ↑</a>
+    </div>
+  </footer>
+  <div class="grain" aria-hidden="true"></div>
+</body>
+</html>

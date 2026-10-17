@@ -95,6 +95,11 @@
     },
   };
 
+  /* ---------- Visit counter events (assets/js/count.js; no-op when not connected) ---------- */
+  const trackEvent = (type, detail) => {
+    try { if (typeof window.mcTrack === 'function') window.mcTrack(type, detail); } catch (e) {}
+  };
+
   /* ---------- Split text into masked words / chars ---------- */
   let splitIndex = 0;
   function split(el) {
@@ -410,6 +415,7 @@
     root.classList.add('lb-open');
     cursor && cursor.classList.remove('is-on');
     lbClose.focus({ preventScroll: true });
+    trackEvent('story', key);
   };
 
   const close = () => {
@@ -454,6 +460,15 @@
     const dx = e.clientX - sx;
     sx = null;
     if (Math.abs(dx) > 50) show(at + (dx < 0 ? 1 : -1));
+  });
+
+  /* Outbound clicks: email, Instagram, Amazon */
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href]');
+    if (!a) return;
+    const href = a.getAttribute('href');
+    const to = href.startsWith('mailto:') ? 'email' : /instagram\.com/.test(href) ? 'instagram' : /amazon\./.test(href) ? 'amazon' : '';
+    if (to) trackEvent('out', to);
   });
 
   /* ---------- Footer year ---------- */
