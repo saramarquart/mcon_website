@@ -103,7 +103,7 @@ em { font-style: italic; }
 }
 .theme-bone {
   --fg: #1a1712;
-  --muted: rgba(26, 23, 18, 0.56);
+  --muted: rgba(26, 23, 18, 0.68);
   --line: rgba(26, 23, 18, 0.16);
   background: var(--paper);
   color: var(--fg);
@@ -720,6 +720,7 @@ em { font-style: italic; }
 :root { --data: #c47f3c; --data-hi: #e09a4f; }  /* single data hue, validated against the dark surface */
 .visitors { display: inline-block; margin: 2px 0 16px; font-size: 10px; color: rgba(236, 231, 222, 0.2); transition: color 0.4s var(--ease); }
 .visitors:hover, .visitors:focus-visible { color: var(--fg); }
+.visitors[hidden] { display: none; }
 
 .stats { padding: clamp(120px, 14vw, 200px) var(--pad) clamp(80px, 10vw, 140px); }
 .stats__count {
