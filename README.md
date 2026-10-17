@@ -35,7 +35,8 @@ Story texts and frame lists live in `STORIES` at the top of `assets/js/main.js`.
 
 ## Before going live
 
-- Fill in a serviceable address in `imprint.html` (marked in red). A German Impressum needs one (§ 5 DDG / § 18 MStV), but it does **not** have to be a private home address: a c/o Impressum-service or business address that accepts and forwards mail works; a P.O. box does not. `privacy.html` only refers to the imprint, and both legal pages are `noindex`.
+- This is a private, non-commercial site, so the legal notice lists name, email and Instagram only (no address); both legal pages are `noindex`.
+- If the site ever becomes commercial (paid shoots, print sales, ads), add a serviceable address to `imprint.html` per § 5 DDG. It does not have to be a home address: a c/o address service works, a P.O. box does not.
 - If the site is hosted somewhere other than GitHub Pages, update the hosting section in `privacy.html`.
 
 ## Responsive notes
