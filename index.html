@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Margarette Contreras — Analog Film Photography</title>
-  <meta name="description" content="Analog film photography by Margarette Contreras. Nature in all its contrasts and imperfections, captured through the grain and play of light that only film can offer.">
-  <meta name="theme-color" content="#0d0c0a">
+  <meta name="description" content="Analog film photography by Margarette Contreras, shot on a Nikon FM2. Nature in all its contrasts and imperfections, captured through the grain and play of light that only film can offer.">
+  <meta name="theme-color" content="#0f0e0c">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Margarette Contreras — Analog Film Photography">
   <meta property="og:description" content="Nature in all its contrasts and imperfections, captured through the grain and play of light that only film can offer.">
@@ -29,20 +29,22 @@
     <div class="loader__count">00</div>
     <div class="loader__meta mono">
       <span>Margarette Contreras</span>
-      <span>Loading roll — 36 exp.</span>
+      <span>Nikon FM2 — loading roll, 36 exp.</span>
     </div>
   </div>
 
   <header class="site-header">
-    <a class="brand" href="#top" aria-label="Margarette Contreras — back to top">MC</a>
-    <p class="site-header__role mono">Analog film photography</p>
+    <a class="brand" href="#top" aria-label="Margarette Contreras — back to top">
+      <span class="seal" aria-hidden="true">MC</span>
+      <span class="brand__name mono">Margarette Contreras</span>
+    </a>
     <nav class="site-nav" aria-label="Main">
       <ul>
-        <li><a class="mono" href="#work"><sup>01</sup>Work</a></li>
-        <li><a class="mono" href="#index"><sup>02</sup>Index</a></li>
-        <li><a class="mono" href="#about"><sup>03</sup>About</a></li>
-        <li><a class="mono" href="#publications"><sup>04</sup>Publications</a></li>
-        <li><a class="mono" href="#contact"><sup>05</sup>Contact</a></li>
+        <li><a class="mono" href="#work">Work</a></li>
+        <li><a class="mono" href="#index">Index</a></li>
+        <li><a class="mono" href="#about">About</a></li>
+        <li><a class="mono" href="#publications">Publications</a></li>
+        <li><a class="mono" href="#contact">Contact</a></li>
       </ul>
     </nav>
     <button class="menu-btn mono" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
@@ -60,34 +62,39 @@
   </div>
 
   <main>
-    <!-- Hero -->
-    <section class="hero" id="top">
-      <div class="hero__media" data-speed="-0.3">
-        <img src="assets/img/hero-2400.jpg"
-             srcset="assets/img/hero-1200.jpg 1200w, assets/img/hero-2400.jpg 2400w"
-             sizes="100vw" width="2400" height="1607" fetchpriority="high" decoding="async"
-             alt="White wooden houses and fishing boats along a harbour in Norway">
-      </div>
-      <h1 class="hero__title" data-split="chars" aria-label="Margarette Contreras">
-        <span class="line">Margarette</span>
-        <span class="line"><em>Contreras</em></span>
-      </h1>
-      <div class="hero__foot mono">
-        <span>N° 07 — Inhabits, Norway</span>
-        <span class="hero__scroll">Scroll</span>
-        <span>Film photography</span>
-      </div>
-    </section>
+    <!-- Hero, pinned; the statement slides over it -->
+    <div class="stack">
+      <section class="hero pin" id="top">
+        <div class="pin__inner">
+          <img src="assets/img/hero-wide-2400.jpg"
+               srcset="assets/img/hero-wide-1200.jpg 1200w, assets/img/hero-wide-2400.jpg 2400w"
+               sizes="100vw" width="2400" height="1350" fetchpriority="high" decoding="async"
+               alt="White wooden houses and fishing boats along a harbour in Norway">
+          <video class="living" data-video="assets/video/hero" muted loop playsinline preload="none" aria-hidden="true"></video>
+        </div>
+        <div class="pin__dim"></div>
+        <div class="hero__content pin__content">
+          <h1 class="hero__title" data-split="chars" aria-label="Margarette Contreras">
+            <span class="line">Margarette</span>
+            <span class="line"><em>Contreras</em></span>
+          </h1>
+        </div>
+        <div class="hero__foot mono pin__content">
+          <span>N° 07 — Inhabits, Norway</span>
+          <span class="hero__scroll">Scroll</span>
+          <span>Nikon FM2 — 35mm film</span>
+        </div>
+      </section>
 
-    <!-- Statement -->
-    <section class="statement grid">
-      <p class="label mono">(Statement)</p>
-      <p class="statement__text" data-split="words">Nature in all its <em>contrasts</em> and <em>imperfections</em> — held in the grain and the play of light that only film can offer.</p>
-      <div class="statement__aside mono reveal">
-        <p>Two series<br>Six stories<br>Thirty-one frames</p>
-        <p>Norway<br>The Last Frontier, Palawan</p>
-      </div>
-    </section>
+      <section class="statement grid sheet">
+        <p class="vlabel mono">Statement</p>
+        <p class="statement__text" data-split="words">Nature in all its <em>contrasts</em> and <em>imperfections</em> — held in the grain and the play of light that only film can offer.</p>
+        <div class="statement__aside mono reveal">
+          <p>Two series<br>Six stories<br>Thirty-one frames</p>
+          <p>Norway<br>The Last Frontier, Palawan</p>
+        </div>
+      </section>
+    </div>
 
     <!-- Work -->
     <section id="work" aria-label="Selected work">
@@ -102,12 +109,15 @@
         <div class="spread">
           <figure class="frame" style="--c:1/9;--cm:1/-1">
             <button class="frame__btn" type="button" data-open="water" data-at="1" data-cursor="View">
-              <span class="frame__img"><img src="assets/img/water-03-1200.jpg" srcset="assets/img/water-03-600.jpg 600w, assets/img/water-03-1200.jpg 1200w, assets/img/water-03-2400.jpg 2400w" sizes="(max-width: 760px) 100vw, 66vw" width="1200" height="804" loading="lazy" decoding="async" alt="Red cabins on the shore beneath a sunlit, jagged peak"></span>
+              <span class="frame__img" style="--ar:16/9">
+                <img src="assets/img/water-03-wide-1200.jpg" srcset="assets/img/water-03-wide-1200.jpg 1200w, assets/img/water-03-wide-2400.jpg 2400w" sizes="(max-width: 760px) 100vw, 66vw" width="1200" height="675" loading="lazy" decoding="async" alt="Red cabins on the shore beneath a sunlit, jagged peak">
+                <video class="living" data-video="assets/video/water-03" muted loop playsinline preload="none" aria-hidden="true"></video>
+              </span>
             </button>
             <figcaption class="mono"><span>N° 11</span><span>Water</span><span>Norway</span></figcaption>
           </figure>
 
-          <figure class="frame" style="--c:10/13;--cm:2/-1;--y:clamp(120px,24vw,420px)">
+          <figure class="frame" style="--c:10/13;--cm:2/-1;--y:clamp(120px,24vw,420px)" data-speed="0.12">
             <button class="frame__btn" type="button" data-open="inhabits" data-at="3" data-cursor="View">
               <span class="frame__img"><img src="assets/img/inhabits-05-1200.jpg" srcset="assets/img/inhabits-05-600.jpg 600w, assets/img/inhabits-05-1200.jpg 1200w, assets/img/inhabits-05-2400.jpg 2400w" sizes="(max-width: 760px) 84vw, 25vw" width="1200" height="804" loading="lazy" decoding="async" alt="A woman by the window of a ferry, sea and mountains beyond"></span>
             </button>
@@ -117,19 +127,22 @@
 
           <figure class="frame" style="--c:2/12;--cm:1/-1">
             <button class="frame__btn" type="button" data-open="light" data-at="2" data-cursor="View">
-              <span class="frame__img"><img src="assets/img/light-04-1200.jpg" srcset="assets/img/light-04-600.jpg 600w, assets/img/light-04-1200.jpg 1200w, assets/img/light-04-2400.jpg 2400w" sizes="(max-width: 760px) 100vw, 84vw" width="1200" height="804" loading="lazy" decoding="async" alt="Rays of light falling into a steep green fjord"></span>
+              <span class="frame__img" style="--ar:16/9">
+                <img src="assets/img/light-04-wide-1200.jpg" srcset="assets/img/light-04-wide-1200.jpg 1200w, assets/img/light-04-wide-2400.jpg 2400w" sizes="(max-width: 760px) 100vw, 84vw" width="1200" height="675" loading="lazy" decoding="async" alt="Rays of light falling into a steep green fjord">
+                <video class="living" data-video="assets/video/light-04" muted loop playsinline preload="none" aria-hidden="true"></video>
+              </span>
             </button>
             <figcaption class="mono"><span>N° 03</span><span>Light</span><span>Norway</span></figcaption>
           </figure>
 
-          <figure class="frame" style="--c:1/6;--cm:1/6">
+          <figure class="frame" style="--c:1/6;--cm:1/6" data-speed="-0.05">
             <button class="frame__btn" type="button" data-open="inhabits" data-at="1" data-cursor="View">
               <span class="frame__img"><img src="assets/img/inhabits-03-1200.jpg" srcset="assets/img/inhabits-03-600.jpg 600w, assets/img/inhabits-03-1200.jpg 1200w, assets/img/inhabits-03-2400.jpg 2400w" sizes="(max-width: 760px) 84vw, 40vw" width="1200" height="804" loading="lazy" decoding="async" alt="Red fishermen’s cabins on rocks below towering mountains"></span>
             </button>
             <figcaption class="mono"><span>N° 06</span><span>Inhabits</span></figcaption>
           </figure>
 
-          <figure class="frame" style="--c:7/13;--cm:2/-1;--y:clamp(60px,14vw,240px)">
+          <figure class="frame" style="--c:7/13;--cm:2/-1;--y:clamp(60px,14vw,240px)" data-speed="0.1">
             <button class="frame__btn" type="button" data-open="water" data-at="4" data-cursor="View">
               <span class="frame__img"><img src="assets/img/water-06-1200.jpg" srcset="assets/img/water-06-600.jpg 600w, assets/img/water-06-1200.jpg 1200w, assets/img/water-06-2400.jpg 2400w" sizes="(max-width: 760px) 84vw, 50vw" width="1200" height="804" loading="lazy" decoding="async" alt="Snow-capped mountains above a winding coastal road"></span>
             </button>
@@ -138,82 +151,113 @@
         </div>
       </article>
 
+      <!-- Chapter two: pinned scene, the spread slides over it -->
       <article class="chapter chapter--frontier" id="frontier">
-        <div class="bleed">
-          <div class="bleed__media" data-speed="0.12">
-            <img src="assets/img/takipsilim-01-1200.jpg" srcset="assets/img/takipsilim-01-1200.jpg 1200w, assets/img/takipsilim-01-2400.jpg 2400w" sizes="100vw" width="1200" height="804" loading="lazy" decoding="async" alt="Sun setting over the water, two swimmers in the glittering light">
+        <div class="stack">
+          <div class="bleed pin">
+            <div class="pin__inner">
+              <img src="assets/img/takipsilim-01-wide-1200.jpg" srcset="assets/img/takipsilim-01-wide-1200.jpg 1200w, assets/img/takipsilim-01-wide-2400.jpg 2400w" sizes="100vw" width="1200" height="675" loading="lazy" decoding="async" alt="Sun setting over the water, swimmers in the glittering light">
+              <video class="living" data-video="assets/video/takipsilim-01" muted loop playsinline preload="none" aria-hidden="true"></video>
+            </div>
+            <div class="pin__dim"></div>
+            <header class="bleed__head grid pin__content">
+              <p class="chapter__kicker mono reveal"><span class="chapter__num">II.</span> Chapter two — Takipsilim, Amos, Buhay Isla</p>
+              <h2 class="chapter__title" data-split="chars">The Last <em>Frontier</em></h2>
+              <p class="chapter__dek reveal">Palawan — the last ecological frontier of the Philippines. Dreamy landscapes, pristine waters and the soothing colours nature brings to this archipelagic province.</p>
+            </header>
           </div>
-          <header class="bleed__head grid">
-            <p class="chapter__kicker mono reveal"><span class="chapter__num">II.</span> Chapter two — Takipsilim, Amos, Buhay Isla</p>
-            <h2 class="chapter__title" data-split="chars">The Last <em>Frontier</em></h2>
-            <p class="chapter__dek reveal">Palawan — the last ecological frontier of the Philippines. Dreamy landscapes, pristine waters and the soothing colours nature brings to this archipelagic province.</p>
-          </header>
-        </div>
 
-        <div class="spread">
-          <figure class="frame" style="--c:2/6;--cm:1/5">
-            <button class="frame__btn" type="button" data-open="amos" data-at="2" data-cursor="View">
-              <span class="frame__img" style="--ar:2/3"><img src="assets/img/amos-03-1200.jpg" srcset="assets/img/amos-03-600.jpg 600w, assets/img/amos-03-1200.jpg 1200w, assets/img/amos-03-2400.jpg 2400w" sizes="(max-width: 760px) 66vw, 33vw" width="804" height="1200" loading="lazy" decoding="async" alt="Palm trees against a bright sky"></span>
-            </button>
-            <figcaption class="mono"><span>N° 23</span><span>Amos</span></figcaption>
-          </figure>
+          <div class="spread sheet">
+            <figure class="frame" style="--c:2/6;--cm:1/5" data-speed="-0.06">
+              <button class="frame__btn" type="button" data-open="amos" data-at="2" data-cursor="View">
+                <span class="frame__img" style="--ar:2/3">
+                  <img src="assets/img/amos-03-tall-1200.jpg" srcset="assets/img/amos-03-tall-1200.jpg 675w, assets/img/amos-03-tall-2400.jpg 1350w" sizes="(max-width: 760px) 66vw, 33vw" width="675" height="1200" loading="lazy" decoding="async" alt="Palm trees against a bright sky">
+                  <video class="living" data-video="assets/video/amos-03" data-sizes="720" muted loop playsinline preload="none" aria-hidden="true"></video>
+                </span>
+              </button>
+              <figcaption class="mono"><span>N° 23</span><span>Amos</span></figcaption>
+            </figure>
 
-          <figure class="frame" style="--c:7/13;--cm:1/-1;--y:clamp(80px,16vw,280px)">
-            <button class="frame__btn" type="button" data-open="isla" data-at="3" data-cursor="View">
-              <span class="frame__img"><img src="assets/img/isla-04-1200.jpg" srcset="assets/img/isla-04-600.jpg 600w, assets/img/isla-04-1200.jpg 1200w, assets/img/isla-04-2400.jpg 2400w" sizes="(max-width: 760px) 100vw, 50vw" width="1200" height="804" loading="lazy" decoding="async" alt="Fishermen and a child sorting the catch on the beach"></span>
-            </button>
-            <figcaption class="mono"><span>N° 30</span><span>Buhay Isla</span><span>Palawan</span></figcaption>
-            <p class="frame__note reveal">“The joy of island living — the ocean, and the close-knit community that calls it home.”</p>
-          </figure>
+            <figure class="frame" style="--c:7/13;--cm:1/-1;--y:clamp(80px,16vw,280px)" data-speed="0.1">
+              <button class="frame__btn" type="button" data-open="isla" data-at="3" data-cursor="View">
+                <span class="frame__img"><img src="assets/img/isla-04-1200.jpg" srcset="assets/img/isla-04-600.jpg 600w, assets/img/isla-04-1200.jpg 1200w, assets/img/isla-04-2400.jpg 2400w" sizes="(max-width: 760px) 100vw, 50vw" width="1200" height="804" loading="lazy" decoding="async" alt="Fishermen and a child sorting the catch on the beach"></span>
+              </button>
+              <figcaption class="mono"><span>N° 30</span><span>Buhay Isla</span><span>Palawan</span></figcaption>
+              <p class="frame__note reveal">“The joy of island living — the ocean, and the close-knit community that calls it home.”</p>
+            </figure>
 
-          <figure class="frame" style="--c:4/13;--cm:1/-1">
-            <button class="frame__btn" type="button" data-open="takipsilim" data-at="3" data-cursor="View">
-              <span class="frame__img"><img src="assets/img/takipsilim-04-1200.jpg" srcset="assets/img/takipsilim-04-600.jpg 600w, assets/img/takipsilim-04-1200.jpg 1200w, assets/img/takipsilim-04-2400.jpg 2400w" sizes="(max-width: 760px) 100vw, 75vw" width="1200" height="804" loading="lazy" decoding="async" alt="Pink and orange clouds over a dark sea at sunset"></span>
-            </button>
-            <figcaption class="mono"><span>N° 18</span><span>Takipsilim</span><span>Palawan</span></figcaption>
-          </figure>
+            <figure class="frame" style="--c:4/13;--cm:1/-1">
+              <button class="frame__btn" type="button" data-open="takipsilim" data-at="3" data-cursor="View">
+                <span class="frame__img"><img src="assets/img/takipsilim-04-1200.jpg" srcset="assets/img/takipsilim-04-600.jpg 600w, assets/img/takipsilim-04-1200.jpg 1200w, assets/img/takipsilim-04-2400.jpg 2400w" sizes="(max-width: 760px) 100vw, 75vw" width="1200" height="804" loading="lazy" decoding="async" alt="Pink and orange clouds over a dark sea at sunset"></span>
+              </button>
+              <figcaption class="mono"><span>N° 18</span><span>Takipsilim</span><span>Palawan</span></figcaption>
+            </figure>
 
-          <figure class="frame" style="--c:1/6;--cm:1/6">
-            <button class="frame__btn" type="button" data-open="isla" data-at="0" data-cursor="View">
-              <span class="frame__img"><img src="assets/img/isla-01-1200.jpg" srcset="assets/img/isla-01-600.jpg 600w, assets/img/isla-01-1200.jpg 1200w, assets/img/isla-01-2400.jpg 2400w" sizes="(max-width: 760px) 84vw, 40vw" width="1200" height="804" loading="lazy" decoding="async" alt="Outrigger boat resting in shallow water at low tide"></span>
-            </button>
-            <figcaption class="mono"><span>N° 27</span><span>Buhay Isla</span></figcaption>
-          </figure>
+            <figure class="frame" style="--c:1/6;--cm:1/6" data-speed="-0.05">
+              <button class="frame__btn" type="button" data-open="isla" data-at="0" data-cursor="View">
+                <span class="frame__img"><img src="assets/img/isla-01-1200.jpg" srcset="assets/img/isla-01-600.jpg 600w, assets/img/isla-01-1200.jpg 1200w, assets/img/isla-01-2400.jpg 2400w" sizes="(max-width: 760px) 84vw, 40vw" width="1200" height="804" loading="lazy" decoding="async" alt="Outrigger boat resting in shallow water at low tide"></span>
+              </button>
+              <figcaption class="mono"><span>N° 27</span><span>Buhay Isla</span></figcaption>
+            </figure>
 
-          <figure class="frame" style="--c:7/12;--cm:2/-1;--y:clamp(60px,12vw,200px)">
-            <button class="frame__btn" type="button" data-open="amos" data-at="1" data-cursor="View">
-              <span class="frame__img"><img src="assets/img/amos-02-1200.jpg" srcset="assets/img/amos-02-600.jpg 600w, assets/img/amos-02-1200.jpg 1200w, assets/img/amos-02-2400.jpg 2400w" sizes="(max-width: 760px) 84vw, 42vw" width="1200" height="804" loading="lazy" decoding="async" alt="Small green island beyond a breaking wave"></span>
-            </button>
-            <figcaption class="mono"><span>N° 22</span><span>Amos</span><span>Palawan</span></figcaption>
-          </figure>
+            <figure class="frame" style="--c:7/12;--cm:2/-1;--y:clamp(60px,12vw,200px)" data-speed="0.12">
+              <button class="frame__btn" type="button" data-open="amos" data-at="1" data-cursor="View">
+                <span class="frame__img"><img src="assets/img/amos-02-1200.jpg" srcset="assets/img/amos-02-600.jpg 600w, assets/img/amos-02-1200.jpg 1200w, assets/img/amos-02-2400.jpg 2400w" sizes="(max-width: 760px) 84vw, 42vw" width="1200" height="804" loading="lazy" decoding="async" alt="Small green island beyond a breaking wave"></span>
+              </button>
+              <figcaption class="mono"><span>N° 22</span><span>Amos</span><span>Palawan</span></figcaption>
+            </figure>
+          </div>
         </div>
       </article>
     </section>
 
-    <!-- Index -->
-    <section class="index" id="index" aria-labelledby="index-title">
-      <header class="index__head">
-        <p class="mono label">(Index)</p>
-        <h2 class="index__heading" id="index-title" data-split="chars">Index</h2>
-        <p class="mono label index__meta">06 stories — 31 frames<br>Select a story to view</p>
-      </header>
-      <ol class="index__list">
-        <li><button class="index__row" type="button" data-open="light"><span class="mono">01</span><span class="index__title">Light</span><span class="index__dek">The interplay between light and nature — texture, shadow and colour.</span><span class="mono index__series">Norway</span><span class="mono index__count">04 fr.</span></button></li>
-        <li><button class="index__row" type="button" data-open="inhabits"><span class="mono">02</span><span class="index__title">Inhabits</span><span class="index__dek">Human lives, from the warmth of home to the vastness of the sea.</span><span class="mono index__series">Norway</span><span class="mono index__count">05 fr.</span></button></li>
-        <li><button class="index__row" type="button" data-open="water"><span class="mono">03</span><span class="index__title">Water</span><span class="index__dek">Fluid, reflective — and the way light dances on its surface.</span><span class="mono index__series">Norway</span><span class="mono index__count">05 fr.</span></button></li>
-        <li><button class="index__row" type="button" data-open="takipsilim"><span class="mono">04</span><span class="index__title">Takipsilim</span><span class="index__dek">Tagalog for dusk — the most awaited hour, when the sky dances in colour.</span><span class="mono index__series">Palawan</span><span class="mono index__count">06 fr.</span></button></li>
-        <li><button class="index__row" type="button" data-open="amos"><span class="mono">05</span><span class="index__title">Amos</span><span class="index__dek">Cuyunon for “let’s go” — weekends at the beach, a large family, white sand.</span><span class="mono index__series">Palawan</span><span class="mono index__count">06 fr.</span></button></li>
-        <li><button class="index__row" type="button" data-open="isla"><span class="mono">06</span><span class="index__title">Buhay Isla</span><span class="index__dek">Island life — the ocean and the close-knit community it holds.</span><span class="mono index__series">Palawan</span><span class="mono index__count">05 fr.</span></button></li>
-      </ol>
-      <div class="index__preview" aria-hidden="true">
-        <img src="assets/img/light-01-600.jpg" alt="" data-key="light" loading="lazy">
-        <img src="assets/img/inhabits-01-600.jpg" alt="" data-key="inhabits" loading="lazy">
-        <img src="assets/img/water-03-600.jpg" alt="" data-key="water" loading="lazy">
-        <img src="assets/img/takipsilim-06-600.jpg" alt="" data-key="takipsilim" loading="lazy">
-        <img src="assets/img/amos-01-600.jpg" alt="" data-key="amos" loading="lazy">
-        <img src="assets/img/isla-03-600.jpg" alt="" data-key="isla" loading="lazy">
-      </div>
-    </section>
+    <!-- On film: pinned scene, the index slides over it -->
+    <div class="stack">
+      <section class="interlude pin" aria-labelledby="film-title">
+        <div class="pin__inner">
+          <img src="assets/img/water-01-wide-1200.jpg" srcset="assets/img/water-01-wide-1200.jpg 1200w, assets/img/water-01-wide-2400.jpg 2400w" sizes="100vw" width="1200" height="675" loading="lazy" decoding="async" alt="Mist rolling over a coastal road and dark water">
+          <video class="living" data-video="assets/video/water-01" muted loop playsinline preload="none" aria-hidden="true"></video>
+        </div>
+        <div class="pin__dim"></div>
+        <div class="interlude__content pin__content">
+          <p class="mono label">(On film)</p>
+          <h2 class="interlude__title" id="film-title" data-split="chars">Nikon <em>FM2</em></h2>
+          <div class="interlude__stocks reveal">
+            <ul class="mono">
+              <li><span>Kodak Ektar</span><span>100</span></li>
+              <li><span>Kodak Gold</span><span>200</span></li>
+              <li><span>Kodak Portra</span><span>400</span></li>
+              <li><span>Kodak Portra</span><span>800</span></li>
+            </ul>
+            <p>A fully mechanical 35mm camera and four colour negative stocks — no autofocus, no screen, one roll at a time. Selected frames on this page are gently brought to life from the original scans.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="index sheet" id="index" aria-labelledby="index-title">
+        <header class="index__head">
+          <p class="vlabel mono">Contents</p>
+          <h2 class="index__heading" id="index-title" data-split="chars">Index</h2>
+          <p class="mono label index__meta">06 stories — 31 frames<br>Select a story to view</p>
+        </header>
+        <ol class="index__list">
+          <li><button class="index__row" type="button" data-open="light"><span class="mono">01</span><span class="index__title">Light</span><span class="index__dek">The interplay between light and nature — texture, shadow and colour.</span><span class="mono index__series">Norway</span><span class="mono index__count">04 fr.</span></button></li>
+          <li><button class="index__row" type="button" data-open="inhabits"><span class="mono">02</span><span class="index__title">Inhabits</span><span class="index__dek">Human lives, from the warmth of home to the vastness of the sea.</span><span class="mono index__series">Norway</span><span class="mono index__count">05 fr.</span></button></li>
+          <li><button class="index__row" type="button" data-open="water"><span class="mono">03</span><span class="index__title">Water</span><span class="index__dek">Fluid, reflective — and the way light dances on its surface.</span><span class="mono index__series">Norway</span><span class="mono index__count">05 fr.</span></button></li>
+          <li><button class="index__row" type="button" data-open="takipsilim"><span class="mono">04</span><span class="index__title">Takipsilim</span><span class="index__dek">Tagalog for dusk — the most awaited hour, when the sky dances in colour.</span><span class="mono index__series">Palawan</span><span class="mono index__count">06 fr.</span></button></li>
+          <li><button class="index__row" type="button" data-open="amos"><span class="mono">05</span><span class="index__title">Amos</span><span class="index__dek">Cuyunon for “let’s go” — weekends at the beach, a large family, white sand.</span><span class="mono index__series">Palawan</span><span class="mono index__count">06 fr.</span></button></li>
+          <li><button class="index__row" type="button" data-open="isla"><span class="mono">06</span><span class="index__title">Buhay Isla</span><span class="index__dek">Island life — the ocean and the close-knit community it holds.</span><span class="mono index__series">Palawan</span><span class="mono index__count">05 fr.</span></button></li>
+        </ol>
+        <div class="index__preview" aria-hidden="true">
+          <img src="assets/img/light-01-600.jpg" alt="" data-key="light" loading="lazy">
+          <img src="assets/img/inhabits-01-600.jpg" alt="" data-key="inhabits" loading="lazy">
+          <img src="assets/img/water-03-600.jpg" alt="" data-key="water" loading="lazy">
+          <img src="assets/img/takipsilim-06-600.jpg" alt="" data-key="takipsilim" loading="lazy">
+          <img src="assets/img/amos-01-600.jpg" alt="" data-key="amos" loading="lazy">
+          <img src="assets/img/isla-03-600.jpg" alt="" data-key="isla" loading="lazy">
+        </div>
+      </section>
+    </div>
 
     <!-- Filmstrip (built in JS) -->
     <div class="filmstrip" aria-hidden="true">
@@ -236,7 +280,8 @@
           </div>
           <dl class="facts mono reveal">
             <dt>From</dt><dd>Palawan, Philippines</dd>
-            <dt>Medium</dt><dd>Analog film</dd>
+            <dt>Camera</dt><dd>Nikon FM2, 35mm</dd>
+            <dt>Film</dt><dd>Kodak Ektar 100, Gold 200, Portra 400 &amp; 800</dd>
             <dt>Series</dt><dd>Norway — The Last Frontier</dd>
             <dt>Instagram</dt><dd><a href="https://www.instagram.com/margxcontreras/" target="_blank" rel="noopener">@margxcontreras ↗</a></dd>
           </dl>
@@ -278,12 +323,14 @@
 
     <!-- Contact -->
     <section class="contact" id="contact" aria-labelledby="contact-title">
-      <p class="mono label">(Contact)</p>
-      <h2 class="contact__kicker" id="contact-title" data-split="words">For commissions, collaborations <em>&amp;</em> inquiries</h2>
-      <a class="contact__mail" href="mailto:margarettecontreras@outlook.com">margarettecontreras<wbr>@outlook.com</a>
-      <div class="contact__links mono">
-        <a href="mailto:margarettecontreras@outlook.com">Email ↗</a>
-        <a href="https://www.instagram.com/margxcontreras/" target="_blank" rel="noopener">Instagram ↗</a>
+      <div class="grid contact__grid">
+        <p class="vlabel mono">Contact</p>
+        <h2 class="contact__kicker" id="contact-title" data-split="words">For commissions, collaborations <em>&amp;</em> inquiries</h2>
+        <a class="contact__mail" href="mailto:margarettecontreras@outlook.com">margarettecontreras<wbr>@outlook.com</a>
+        <div class="contact__links mono">
+          <a href="mailto:margarettecontreras@outlook.com">Email ↗</a>
+          <a href="https://www.instagram.com/margxcontreras/" target="_blank" rel="noopener">Instagram ↗</a>
+        </div>
       </div>
     </section>
   </main>

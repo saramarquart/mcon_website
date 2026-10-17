@@ -149,7 +149,7 @@
     requestAnimationFrame(() => requestAnimationFrame(ready));
   } else {
     const count = $('.loader__count', loader);
-    const heroImg = $('.hero__media img');
+    const heroImg = $('.hero img');
     const D = 1500;
     const t0 = performance.now();
     const tick = now => {
@@ -187,15 +187,70 @@
       queued = false;
       const vh = innerHeight;
       parallax.forEach(el => {
-        const r = el.parentElement.getBoundingClientRect();
-        if (r.bottom < -200 || r.top > vh + 200) return;
-        const offset = (r.top + r.height / 2 - vh / 2) * parseFloat(el.dataset.speed);
+        // Measure the element's untransformed position by removing the offset applied last frame
+        const r = el.getBoundingClientRect();
+        const prev = el._offset || 0;
+        const top = r.top - prev;
+        if (top + r.height < -200 || top > vh + 200) return;
+        const offset = (top + r.height / 2 - vh / 2) * parseFloat(el.dataset.speed);
+        el._offset = offset;
         el.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`;
       });
     };
     addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
     addEventListener('resize', update);
     update();
+  }
+
+  /* ---------- Depth: pinned scenes recede as the next sheet slides over them ---------- */
+  const pins = $$('.pin').map(pin => ({ pin, sheet: pin.nextElementSibling, videos: $$('video.living', pin), p: -1 }));
+  if (pins.length) {
+    let queued = false;
+    const updatePins = () => {
+      queued = false;
+      const vh = innerHeight;
+      pins.forEach(o => {
+        if (!o.sheet) return;
+        const p = Math.min(1, Math.max(0, (vh - o.sheet.getBoundingClientRect().top) / vh));
+        if (p === o.p) return;
+        o.p = p;
+        if (!reduce) o.pin.style.setProperty('--p', p.toFixed(3));
+        // Nothing to see once fully covered: stop decoding video behind the sheet
+        o.videos.forEach(v => {
+          if (p >= 0.999) v.pause();
+          else if (v.dataset.loaded && v.dataset.visible && v.paused) v.play().catch(() => {});
+        });
+      });
+    };
+    addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(updatePins); } }, { passive: true });
+    addEventListener('resize', updatePins);
+    updatePins();
+  }
+
+  /* ---------- Living stills: load and play only while on screen ---------- */
+  const saveData = navigator.connection && navigator.connection.saveData;
+  const videos = $$('video.living');
+  if (!reduce && !saveData && videos.length) {
+    const pick = v => {
+      const sizes = (v.dataset.sizes || '1080,720').split(',').map(Number);
+      const need = v.parentElement.getBoundingClientRect().width * (devicePixelRatio || 1);
+      return `${v.dataset.video}-${sizes.includes(1080) && need > 1400 ? 1080 : 720}.mp4`;
+    };
+    const vio = new IntersectionObserver(entries => entries.forEach(e => {
+      const v = e.target;
+      v.dataset.visible = e.isIntersecting ? '1' : '';
+      if (e.isIntersecting) {
+        if (!v.dataset.loaded) { v.muted = true; v.src = pick(v); v.dataset.loaded = '1'; }
+        v.play().catch(() => {});
+      } else {
+        v.pause();
+      }
+    }), { rootMargin: '200px 0px' });
+    videos.forEach(v => {
+      v.addEventListener('playing', () => v.classList.add('is-playing'), { once: true });
+      v.addEventListener('error', () => v.remove());
+      vio.observe(v);
+    });
   }
 
   /* ---------- Header: hide on scroll down, active section ---------- */
