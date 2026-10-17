@@ -46,6 +46,7 @@ const DEFAULT_ALBUMS = [
   { key: 'amos', place: 'Palawan', added: '2023-01-01', weight: 1.45 },
   { key: 'isla', place: 'Palawan', added: '2023-01-01', weight: 1.2 },
   { key: 'venice', place: 'Italy', added: '2026-10-17', weight: 1.15 },
+  { key: 'azure', place: 'Greece', added: '2026-10-17', weight: 1.1 },
   { key: 'publications', place: 'Publications', added: '2023-01-01', weight: 0.55 },
 ];
 const LINKS = { email: 1, instagram: 1, amazon: 1 };

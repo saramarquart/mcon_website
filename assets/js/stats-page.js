@@ -22,13 +22,14 @@
   let STORY = {
     light: ['Light', 'light-01'], inhabits: ['Inhabits', 'inhabits-01'], water: ['Water', 'water-03'],
     takipsilim: ['Takipsilim', 'takipsilim-06'], amos: ['Amos', 'amos-01'], isla: ['Buhay Isla', 'isla-03'],
-    venice: ['Venice', 'venice-01'], publications: ['Cosmos Coffee', 'pub-02'],
+    venice: ['Acqua e Pietra', 'venice-01'], azure: ['Azure', 'azure-01'], publications: ['Cosmos Coffee', 'pub-02'],
   };
   const FRAMES = ['light-01', 'norway-cover', 'light-04', 'light-05', 'inhabits-01', 'inhabits-03', 'hero', 'inhabits-05',
     'inhabits-06', 'water-01', 'water-03', 'water-04', 'water-05', 'water-06', 'takipsilim-01', 'takipsilim-02',
     'takipsilim-03', 'takipsilim-04', 'takipsilim-05', 'takipsilim-06', 'amos-01', 'amos-02', 'amos-03', 'amos-04',
     'amos-05', 'amos-06', 'isla-01', 'isla-02', 'isla-03', 'isla-04', 'isla-05',
-    'venice-01', 'venice-02', 'venice-03', 'venice-04', 'venice-05', 'venice-06', 'venice-07', 'venice-08', 'venice-09'];
+    'venice-01', 'venice-02', 'venice-03', 'venice-04', 'venice-05', 'venice-06', 'venice-07', 'venice-08', 'venice-09',
+    'azure-01', 'azure-02', 'azure-03', 'azure-04'];
   const REFS = { instagram: 'Instagram', google: 'Google', search: 'Other search engines', facebook: 'Facebook',
     pinterest: 'Pinterest', direct: 'Direct or bookmark', other: 'Other websites' };
 

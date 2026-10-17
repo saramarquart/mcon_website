@@ -83,7 +83,7 @@
       ],
     },
     venice: {
-      title: 'Venice', series: 'Italy',
+      title: 'Acqua e Pietra', series: 'Venice',
       text: 'Two rolls of film in Venice: the Grand Canal from the Rialto bridge, the Bridge of Sighs, gondolas facing San Giorgio Maggiore, and the quieter side canals, some of them from a gondola. And yes, that bell tower really does lean.',
       frames: [
         ['venice-01', 'Gondolas moored in front of San Giorgio Maggiore'],
@@ -95,6 +95,16 @@
         ['venice-07', 'A narrow canal with striped mooring poles'],
         ['venice-08', 'A weathered facade with gothic windows above a moored boat'],
         ['venice-09', 'A gothic staircase and arcades under a skylight'],
+      ],
+    },
+    azure: {
+      title: 'Azure', series: 'Santorini',
+      text: 'Santorini on film. Oia from the cliff edge, the caldera at midday and in the evening light, and a beach under a cliff where the film caught a light leak. The water really was that blue.',
+      frames: [
+        ['azure-01', 'The deep blue caldera seen from the cliff edge, white terraces below'],
+        ['azure-02', 'Oia with blue domes above the sea'],
+        ['azure-03', 'Oia in the warm evening light above the caldera'],
+        ['azure-04', 'A dark pebble beach below a large cliff, with an orange light leak'],
       ],
     },
     publications: {
@@ -319,7 +329,7 @@
   /* ---------- Filmstrip ---------- */
   const track = $('.filmstrip__track');
   if (track) {
-    const frames = ['light', 'inhabits', 'water', 'takipsilim', 'amos', 'isla', 'venice']
+    const frames = ['light', 'inhabits', 'water', 'takipsilim', 'amos', 'isla', 'venice', 'azure']
       .flatMap(k => STORIES[k].frames.map(f => f[0]));
     const html = frames.map((name, n) =>
       `<div class="filmstrip__frame"><img src="${src(name, 600)}" alt="" loading="lazy" decoding="async" width="600" height="402">` +

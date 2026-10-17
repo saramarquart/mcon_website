@@ -51,11 +51,19 @@
   },
   {
    "key": "venice",
-   "title": "Venice",
+   "title": "Acqua e Pietra",
    "cover": "venice-01",
    "place": "Italy",
    "added": "2026-10-17",
    "weight": 1.15
+  },
+  {
+   "key": "azure",
+   "title": "Azure",
+   "cover": "azure-01",
+   "place": "Greece",
+   "added": "2026-10-17",
+   "weight": 1.1
   },
   {
    "key": "publications",
