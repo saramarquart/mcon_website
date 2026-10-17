@@ -1,0 +1,69 @@
+{
+ "note": "Album registry. Used by the stats page and by the Google Apps Script (stats-backend/Code.gs) for story-open counts. Add new albums here.",
+ "stories": [
+  {
+   "key": "light",
+   "title": "Light",
+   "cover": "light-01",
+   "place": "Norway",
+   "added": "2023-01-01",
+   "weight": 1.1
+  },
+  {
+   "key": "inhabits",
+   "title": "Inhabits",
+   "cover": "inhabits-01",
+   "place": "Norway",
+   "added": "2023-01-01",
+   "weight": 1.0
+  },
+  {
+   "key": "water",
+   "title": "Water",
+   "cover": "water-03",
+   "place": "Norway",
+   "added": "2023-01-01",
+   "weight": 1.05
+  },
+  {
+   "key": "takipsilim",
+   "title": "Takipsilim",
+   "cover": "takipsilim-06",
+   "place": "Palawan",
+   "added": "2023-01-01",
+   "weight": 1.3
+  },
+  {
+   "key": "amos",
+   "title": "Amos",
+   "cover": "amos-01",
+   "place": "Palawan",
+   "added": "2023-01-01",
+   "weight": 1.45
+  },
+  {
+   "key": "isla",
+   "title": "Buhay Isla",
+   "cover": "isla-03",
+   "place": "Palawan",
+   "added": "2023-01-01",
+   "weight": 1.2
+  },
+  {
+   "key": "venice",
+   "title": "Venice",
+   "cover": "venice-01",
+   "place": "Italy",
+   "added": "2026-10-17",
+   "weight": 1.15
+  },
+  {
+   "key": "publications",
+   "title": "Cosmos Coffee",
+   "cover": "pub-02",
+   "place": "Publications",
+   "added": "2023-01-01",
+   "weight": 0.55
+  }
+ ]
+}

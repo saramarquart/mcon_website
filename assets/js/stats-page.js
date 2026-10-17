@@ -18,15 +18,17 @@
   })();
   const zoneCity = tz => tz.split('/').pop().replace(/_/g, ' ');
 
-  const STORY = {
+  // Album titles and covers; replaced by assets/data/stories.json when it loads
+  let STORY = {
     light: ['Light', 'light-01'], inhabits: ['Inhabits', 'inhabits-01'], water: ['Water', 'water-03'],
     takipsilim: ['Takipsilim', 'takipsilim-06'], amos: ['Amos', 'amos-01'], isla: ['Buhay Isla', 'isla-03'],
-    publications: ['Cosmos Coffee', 'pub-02'],
+    venice: ['Venice', 'venice-01'], publications: ['Cosmos Coffee', 'pub-02'],
   };
   const FRAMES = ['light-01', 'norway-cover', 'light-04', 'light-05', 'inhabits-01', 'inhabits-03', 'hero', 'inhabits-05',
     'inhabits-06', 'water-01', 'water-03', 'water-04', 'water-05', 'water-06', 'takipsilim-01', 'takipsilim-02',
     'takipsilim-03', 'takipsilim-04', 'takipsilim-05', 'takipsilim-06', 'amos-01', 'amos-02', 'amos-03', 'amos-04',
-    'amos-05', 'amos-06', 'isla-01', 'isla-02', 'isla-03', 'isla-04', 'isla-05'];
+    'amos-05', 'amos-06', 'isla-01', 'isla-02', 'isla-03', 'isla-04', 'isla-05',
+    'venice-01', 'venice-02', 'venice-03', 'venice-04', 'venice-05', 'venice-06', 'venice-07', 'venice-08', 'venice-09'];
   const REFS = { instagram: 'Instagram', google: 'Google', search: 'Other search engines', facebook: 'Facebook',
     pinterest: 'Pinterest', direct: 'Direct or bookmark', other: 'Other websites' };
 
@@ -183,7 +185,7 @@
       const size = 8 + 18 * Math.sqrt(p.v / max);
       const b = document.createElement('button');
       b.type = 'button';
-      b.className = `pin${p.cc === recentCc && i === pins.findIndex(q => q.cc === recentCc) ? ' is-recent' : ''}`;
+      b.className = `mpin${p.cc === recentCc && i === pins.findIndex(q => q.cc === recentCc) ? ' is-recent' : ''}`;
       b.style.cssText = `left:${pos.left}%;top:${pos.top}%;--s:${size.toFixed(1)}px;--i:${i}`;
       const where = multi[p.cc] > 1 ? `${country(p.cc)}, ${zoneCity(p.tz)}` : country(p.cc);
       b.setAttribute('aria-label', `${where}: ${p.v} visits`);
@@ -196,7 +198,7 @@
     if (zones[myTz]) {
       const pos = place(zones[myTz][1], zones[myTz][2]);
       const me = document.createElement('span');
-      me.className = 'pin-you mono';
+      me.className = 'mpin-you mono';
       me.style.cssText = `left:${pos.left}%;top:${pos.top}%`;
       me.textContent = 'You';
       me.setAttribute('aria-hidden', 'true');
@@ -242,7 +244,7 @@
         (c.top && STORY[c.top] ? `<dt>Most opened</dt><dd>${esc(STORY[c.top][0])}</dd>` : '') +
         (tzs.length > 1 ? `<dt>Regions</dt><dd>${tzs.map(([tz, v]) => `${esc(zoneCity(tz))} ${fmt(v)}`).join(', ')}</dd>` : '') +
         `</dl>`;
-      pinsEl.querySelectorAll('.pin').forEach(p => p.classList.toggle('is-active', p.dataset.cc === cc));
+      pinsEl.querySelectorAll('.mpin').forEach(p => p.classList.toggle('is-active', p.dataset.cc === cc));
       list.querySelectorAll('.rank__row').forEach(r => r.setAttribute('aria-pressed', String(r.dataset.cc === cc)));
       if (fromList) panel.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
     };
@@ -255,7 +257,7 @@
     $('[data-stories]').innerHTML = rows.map(([k, v], i) =>
       `<li class="board__row${i === 0 && v ? ' is-top' : ''}">` +
       `<span class="rank__n">${String(i + 1).padStart(2, '0')}</span>` +
-      `<img src="assets/img/${STORY[k][1]}-600.jpg" alt="" loading="lazy" decoding="async">` +
+      (STORY[k][1] ? `<img src="assets/img/${esc(STORY[k][1])}-600.jpg" alt="" loading="lazy" decoding="async">` : '<span></span>') +
       `<span class="board__title">${esc(STORY[k][0])}</span>` +
       `<span class="rank__v">${fmt(v)}</span>${bar(v, max)}</li>`).join('');
   };
@@ -321,8 +323,17 @@
   /* ---------- Load ---------- */
   const getJSON = url => fetch(url, { cache: 'no-store' }).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
   const status = $('[data-status]');
-  const assets = Promise.all([getJSON('assets/data/land.json'), getJSON('assets/data/tz.json')])
-    .then(([l, t]) => { land = l; zones = t.zones; drawDots(); });
+  const assets = Promise.all([
+    getJSON('assets/data/land.json'),
+    getJSON('assets/data/tz.json'),
+    getJSON('assets/data/stories.json').catch(() => null),
+  ]).then(([l, t, st]) => {
+    land = l; zones = t.zones; drawDots();
+    if (st && Array.isArray(st.stories) && st.stories.length) {
+      STORY = {};
+      st.stories.forEach(a => { if (a.key && a.title) STORY[a.key] = [a.title, a.cover || '']; });
+    }
+  });
 
   renderSheet(Math.max(BASELINE, you));
   renderYou();

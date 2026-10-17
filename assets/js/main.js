@@ -82,6 +82,21 @@
         ['isla-05', 'An outrigger boat on clear turquoise water near a small island'],
       ],
     },
+    venice: {
+      title: 'Venice', series: 'Italy',
+      text: 'Two rolls of film in Venice: the Grand Canal from the Rialto bridge, the Bridge of Sighs, gondolas facing San Giorgio Maggiore, and the quieter side canals, some of them from a gondola. And yes, that bell tower really does lean.',
+      frames: [
+        ['venice-01', 'Gondolas moored in front of San Giorgio Maggiore'],
+        ['venice-02', 'Vaporetto, gondola and water taxi on the Grand Canal, seen from the Rialto bridge'],
+        ['venice-03', 'Boats and red awnings along the Grand Canal'],
+        ['venice-04', 'Gondolas passing under the Bridge of Sighs'],
+        ['venice-05', 'A side canal with a leaning bell tower and the wake of a boat'],
+        ['venice-06', 'A narrow canal seen from the bow of a gondola'],
+        ['venice-07', 'A narrow canal with striped mooring poles'],
+        ['venice-08', 'A weathered facade with gothic windows above a moored boat'],
+        ['venice-09', 'A gothic staircase and arcades under a skylight'],
+      ],
+    },
     publications: {
       title: 'Cosmos Coffee', series: 'Publications & exhibitions',
       text: 'Photographs for the book and the touring exhibition “Cosmos Coffee” at the Deutsches Museum in Munich, including two taken at the Starbucks Reserve Roastery in Milan.',
@@ -304,7 +319,7 @@
   /* ---------- Filmstrip ---------- */
   const track = $('.filmstrip__track');
   if (track) {
-    const frames = ['light', 'inhabits', 'water', 'takipsilim', 'amos', 'isla']
+    const frames = ['light', 'inhabits', 'water', 'takipsilim', 'amos', 'isla', 'venice']
       .flatMap(k => STORIES[k].frames.map(f => f[0]));
     const html = frames.map((name, n) =>
       `<div class="filmstrip__frame"><img src="${src(name, 600)}" alt="" loading="lazy" decoding="async" width="600" height="402">` +

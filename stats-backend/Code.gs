@@ -20,6 +20,10 @@
  * Warm-up: besides real visits, the script mixes in simulated background visits
  * (see SIM_PER_DAY and SIM_PLACES below). They are marked "sim" in the last column.
  * Set SIM_PER_DAY = 0 to stop them.
+ *
+ * Albums come from the site's album list (assets/data/stories.json). Albums that existed on
+ * the old site get a share of OLD_SITE_OPEN_RATE × BASELINE story opens; newer albums start
+ * at 0 and grow with (simulated) visits. Set OLD_SITE_OPEN_RATE = 0 to remove the starting counts.
  */
 
 const BASELINE = 2149;       // visits counted on the old site before the move
@@ -30,7 +34,20 @@ const SHEET_NAME = 'events';
 const HEADER = ['time', 'type', 'page', 'detail', 'timezone', 'country', 'language', 'referrer', 'device', 'source'];
 
 const TYPES = { visit: 1, view: 1, story: 1, out: 1 };
-const STORIES = { light: 1, inhabits: 1, water: 1, takipsilim: 1, amos: 1, isla: 1, publications: 1 };
+const SITE = 'https://www.palawanbeachclub.com/';
+const MOVED_ON = '2026-10-17';      // albums added before this date existed on the old site
+const OLD_SITE_OPEN_RATE = 0.28;    // share of old-site visits that opened an album
+// Fallback if the album list can't be loaded
+const DEFAULT_ALBUMS = [
+  { key: 'light', place: 'Norway', added: '2023-01-01', weight: 1.1 },
+  { key: 'inhabits', place: 'Norway', added: '2023-01-01', weight: 1 },
+  { key: 'water', place: 'Norway', added: '2023-01-01', weight: 1.05 },
+  { key: 'takipsilim', place: 'Palawan', added: '2023-01-01', weight: 1.3 },
+  { key: 'amos', place: 'Palawan', added: '2023-01-01', weight: 1.45 },
+  { key: 'isla', place: 'Palawan', added: '2023-01-01', weight: 1.2 },
+  { key: 'venice', place: 'Italy', added: '2026-10-17', weight: 1.15 },
+  { key: 'publications', place: 'Publications', added: '2023-01-01', weight: 0.55 },
+];
 const LINKS = { email: 1, instagram: 1, amazon: 1 };
 const PAGES = { '/': 1, '/imprint.html': 1, '/privacy.html': 1, '/stats.html': 1 };
 
@@ -49,7 +66,7 @@ function doPost(e) {
   const tz = normTz_(d.tz);
   const cc = tz ? TZ_CC[tz] : '';
   const page = PAGES[d.page] ? d.page : 'other';
-  const detail = type === 'story' ? (STORIES[d.d] ? d.d : '')
+  const detail = type === 'story' ? (albumKeys_()[d.d] ? d.d : '')
     : type === 'out' ? (LINKS[d.d] ? d.d : '') : '';
   const lang = /^[a-z]{2,3}$/.test(d.lang || '') ? d.lang : '';
   const ref = refDomain_(d.ref);
@@ -147,6 +164,8 @@ function stats_() {
     delete countries[cc].opens;
   });
   Object.keys(regions).forEach(tz => { if (regions[tz] < MIN_REGION) delete regions[tz]; });
+  const base = albumBaseline_();
+  Object.keys(base).forEach(k => { stories[k] = (stories[k] || 0) + base[k]; });
 
   const days = [];
   for (let i = 29; i >= 0; i--) {
@@ -221,7 +240,8 @@ function simulate_() {
     const opens = weighted_([[0, 40], [1, 35], [2, 20], [3, 5]]);
     for (let k = 0; k < opens; k++) {
       const ts = Math.min(now, t + (k + 1) * (40000 + Math.random() * 150000));
-      rows.push([new Date(ts), 'story', '/', simStory_(cc), tz, cc, place[2], '', device, 'sim']);
+      const story = simStory_(cc, ts);
+      if (story) rows.push([new Date(ts), 'story', '/', story, tz, cc, place[2], '', device, 'sim']);
     }
     if (cc && seen.indexOf(cc) === -1) seen.push(cc);
   }
@@ -249,11 +269,53 @@ function simRef_(cc) {
   return weighted_([['l.instagram.com', 45], ['', 33], [google, 14], ['m.facebook.com', cc === 'PH' ? 12 : 4]]);
 }
 
-function simStory_(cc) {
-  const ph = [['amos', 30], ['takipsilim', 25], ['isla', 25], ['light', 5], ['water', 5], ['inhabits', 5], ['publications', 5]];
-  const de = [['light', 20], ['water', 20], ['inhabits', 20], ['amos', 12], ['takipsilim', 10], ['isla', 8], ['publications', 10]];
-  const other = [['amos', 18], ['takipsilim', 18], ['isla', 16], ['light', 14], ['water', 14], ['inhabits', 12], ['publications', 8]];
-  return weighted_(cc === 'PH' ? ph : cc === 'DE' ? de : other);
+// Visitors lean towards albums from their own region; albums are a bit more popular in their first 60 days
+function simStory_(cc, at) {
+  const pairs = albums_().map(a => {
+    let w = Number(a.weight) || 1;
+    if (cc === 'PH' && a.place === 'Palawan') w *= 3;
+    if (cc === 'DE' && a.place === 'Norway') w *= 2;
+    const age = (at - new Date(a.added).getTime()) / 864e5;
+    if (age >= 0 && age < 60) w *= 1.5;
+    if (age < 0) w = 0;   // not published yet at that time
+    return [a.key, w];
+  }).filter(p => p[1] > 0);
+  return pairs.length ? weighted_(pairs) : '';
+}
+
+/* ---------- Albums (from the site's assets/data/stories.json) ---------- */
+
+function albums_() {
+  const cache = CacheService.getScriptCache();
+  const hit = cache.get('albums');
+  if (hit) return JSON.parse(hit);
+  let list = DEFAULT_ALBUMS;
+  try {
+    const res = UrlFetchApp.fetch(SITE + 'assets/data/stories.json', { muteHttpExceptions: true });
+    if (res.getResponseCode() === 200) {
+      const data = JSON.parse(res.getContentText());
+      const ok = (data.stories || []).filter(a => /^[a-z][a-z0-9-]{1,30}$/.test(a.key || ''));
+      if (ok.length) list = ok.map(a => ({ key: a.key, place: a.place || '', added: a.added || MOVED_ON, weight: Number(a.weight) || 1 }));
+    }
+  } catch (err) {}
+  cache.put('albums', JSON.stringify(list), 21600);
+  return list;
+}
+
+function albumKeys_() {
+  const keys = {};
+  albums_().forEach(a => { keys[a.key] = 1; });
+  return keys;
+}
+
+// Story opens attributed to the visits on the old site, shared by album weight
+function albumBaseline_() {
+  const old = albums_().filter(a => a.added < MOVED_ON);
+  const sum = old.reduce((t, a) => t + a.weight, 0) || 1;
+  const total = Math.round(BASELINE * OLD_SITE_OPEN_RATE);
+  const out = {};
+  old.forEach(a => { out[a.key] = Math.round(total * a.weight / sum); });
+  return out;
 }
 
 function weighted_(pairs) {
